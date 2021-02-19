@@ -1,0 +1,28 @@
+name: 'Skeleton Builder'
+author: 'Djamil Legato'
+description: Creates fully functional Grav skeleton packages that include all the necessary dependencies
+inputs:
+  version:
+    description: 'Which Grav version should be used (defaults to latest stable)'
+    required: true
+    default: 'latest'
+  adminPlugin:
+    description: 'Create also a package copy with the Admin Plugin installed'
+    required: false
+    default: true
+runs:
+  using: 'composite'
+  steps:
+  - uses: actions/checkout@v2
+
+  - name: Setting up PHP Environment
+    uses: shivammathur/setup-php@v2
+    with:
+      php-version: '7.4'
+      extensions: opcache, gd
+      coverage: none
+    env:
+      COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+  - run: ${{ github.action_path }}/goodbye.sh
+      shell: bash
