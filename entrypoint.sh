@@ -5,7 +5,7 @@ set -eu
 mkdir /dist /build
 
 REPOSITORY_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F / '{print $2}' | sed -e "s/:refs//")
-VERSION=$GITHUB_REF
+VERSION=$GITHUB_REF | sed -e "s/refs\/heads\///"
 
 echo "${REPOSITORY_NAME} ${INPUT_VERSION} ${INPUT_ADMINPLUGIN}"
 
