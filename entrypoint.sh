@@ -14,7 +14,7 @@ curl --write-out '%{http_code}' --silent --location https://getgrav.org/download
 unzip -q grav.zip
 rm -rf grav.zip
 cd grav
-bin/grav install
+#bin/grav install
 ls -la .
 
 ls -la $GITHUB_WORKSPACE
