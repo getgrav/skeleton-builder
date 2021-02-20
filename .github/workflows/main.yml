@@ -1,4 +1,4 @@
-name: [dev] Build Skeleton
+name: '[dev] Build Skeleton'
 
 on:
   push:

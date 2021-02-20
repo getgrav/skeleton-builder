@@ -26,5 +26,3 @@ zip -q -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x 
 ls -la .
 ls -la /dist
 ls -la /build
-# ls -la $GITHUB_WORKSPACE
-# zip -q -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r $1 $2
