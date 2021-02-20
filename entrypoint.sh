@@ -6,10 +6,7 @@ $REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s
 $VERSION=$GITHUB_REF
 
 
-echo "${REPOSITORY_NAME} ${VERSION}"
-echo $INPUT_VERSION
-echo $INPUT_ADMINPLUGIN
-
+echo "${REPOSITORY_NAME} ${VERSION} ${INPUT_VERSION} ${INPUT_ADMINPLUGIN}"
 
 curl -L https://getgrav.org/download/core/grav/${INPUT_VERSION} > /grav.zip;
 
