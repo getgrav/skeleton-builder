@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -l
 
 set -eu
 
@@ -9,6 +9,9 @@ $VERSION=$GITHUB_REF
 echo "$REPOSITORY_NAME $VERSION"
 echo $INPUT_VERSION
 echo $INPUT_ADMINPLUGIN
+
+
+curl -L https://getgrav.org/download/core/grav/${INPUT_VERSION} > /grav.zip;
 
 ls .
 ls -la /
