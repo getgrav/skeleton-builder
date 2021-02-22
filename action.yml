@@ -13,6 +13,10 @@ inputs:
     description: 'Create also a package copy with the Admin Plugin installed'
     required: false
     default: true
+  verbose:
+    description: 'Outputs everything to help identifying potential issues.'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
