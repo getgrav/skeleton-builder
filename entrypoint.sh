@@ -29,14 +29,15 @@ cd grav
 rm -rf user
 cp -Rf $GITHUB_WORKSPACE user
 bin/grav install ${SILENT}
+cd build
 
 # Create a package of the skeleton (w/o admin)
-zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}-${VERSION}.zip" /build
+zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}-${VERSION}.zip" .
 
 # If option enabled, also create a package with admin included
 if $INPUT_ADMINPLUGIN; then
     bin/gpm install admin -y ${SILENT}
-    zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}+admin-${VERSION}.zip" /build
+    zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}+admin-${VERSION}.zip" .
 fi
 
 # Finally make the dist packages available in the workspace
