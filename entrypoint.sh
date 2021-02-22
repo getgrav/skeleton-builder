@@ -8,7 +8,7 @@ mkdir /dist /build
 
 # Variables prepping
 REPOSITORY_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F / '{print $2}' | sed -e "s/:refs//")
-VERSION=$(echo "${GITHUB_REF}" | sed -e "s/refs\/heads\///")
+VERSION=$(echo "${GITHUB_REF}" | sed -e "s/refs\/heads\///" | sed -e "s/refs\/tags\///")
 SILENT='-q'
 CURL_SILENT='--silent'
 
