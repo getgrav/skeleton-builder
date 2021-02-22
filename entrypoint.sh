@@ -39,6 +39,9 @@ if $INPUT_ADMINPLUGIN; then
     zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}+admin-${VERSION}.zip" /build
 fi
 
+# Finally make the dist packages available in the workspace
+mv /dist $GITHUB_WORKSPACE
+
 # When in verbose mode, output a list of installed plugins/themes and final /build folder
 if $INPUT_VERBOSE; then
     ls -la user/plugins
