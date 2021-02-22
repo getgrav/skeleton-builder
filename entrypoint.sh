@@ -23,6 +23,11 @@ bin/grav install
 
 zip -q -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}-${VERSION}.zip" /build
 
+if $INPUT_ADMINPLUGIN; then
+    bin/gpm install admin -y
+    zip -q -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}+admin-${VERSION}.zip" /build
+fi
+
 ls -la .
 ls -la /dist
 ls -la /build
