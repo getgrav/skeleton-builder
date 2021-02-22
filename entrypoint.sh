@@ -29,7 +29,6 @@ cd grav
 rm -rf user
 cp -Rf $GITHUB_WORKSPACE user
 bin/grav install ${SILENT}
-cd build
 
 # Create a package of the skeleton (w/o admin)
 zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* -r "/dist/${REPOSITORY_NAME}-${VERSION}.zip" .
