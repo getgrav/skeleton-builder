@@ -2,8 +2,8 @@
 
 set -eu
 
-# Prepping files will reside in /dist
-# Output zip builds will reside in /build
+# Prepping files will reside in /build
+# Output zip packages will reside in /dist
 mkdir /dist /build
 
 # Variables prepping
@@ -43,5 +43,5 @@ fi
 if $INPUT_VERBOSE; then
     ls -la user/plugins
     ls -la user/themes
-    ls -la /build
+    ls -la /dist
 fi
