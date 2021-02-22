@@ -46,5 +46,5 @@ mv /dist $GITHUB_WORKSPACE
 if $INPUT_VERBOSE; then
     ls -la user/plugins
     ls -la user/themes
-    ls -la /dist
+    ls -la dist
 fi
