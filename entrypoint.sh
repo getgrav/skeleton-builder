@@ -6,9 +6,13 @@ set -eu
 # Output zip packages will reside in /dist
 mkdir /dist /build
 
+# Extrapolate version
+VERSION=${{ GITHUB_EVENT_INPUTS_TAG || GITHUB_REF }}
+echo "SKELETON_VERSION=${{ VERSION }}" >> $GITHUB_ENV
+VERSION=$(echo "${VERSION}" | sed -e "s/refs\/heads\///" | sed -e "s/refs\/tags\///")
+
 # Variables prepping
 REPOSITORY_NAME=$(echo "${GITHUB_REPOSITORY}" | awk -F / '{print $2}' | sed -e "s/:refs//")
-VERSION=$(echo "${GITHUB_REF}" | sed -e "s/refs\/heads\///" | sed -e "s/refs\/tags\///")
 SILENT='-q'
 CURL_SILENT='--silent'
 
