@@ -6,7 +6,7 @@ RUN rm -rf composer-setup.php
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN apk add --quiet -no-cache \
+RUN apk add --quiet --no-cache \
     zip \
     git \
     libpng \
