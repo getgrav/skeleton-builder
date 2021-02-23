@@ -9,7 +9,7 @@ inputs:
     description: 'Which Grav version should be used (defaults to latest stable)'
     required: true
     default: 'latest'
-  adminPlugin:
+  admin:
     description: 'Create also a package copy with the Admin Plugin installed'
     required: false
     default: true
@@ -22,4 +22,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.version }}
-    - ${{ inputs.adminPlugin }}
+    - ${{ inputs.admin }}
