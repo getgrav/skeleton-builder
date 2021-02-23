@@ -6,7 +6,7 @@ RUN rm -rf composer-setup.php
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN apk add --no-cache \
+RUN apk add --quiet -no-cache \
     zip \
     git \
     libpng \
@@ -15,7 +15,8 @@ RUN apk add --no-cache \
     php-gd \
     php-zip
 
-RUN docker-php-ext-install gd zip
+RUN set -x
+RUN docker-php-ext-install gd zip > /dev/null
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
