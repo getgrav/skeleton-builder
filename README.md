@@ -74,7 +74,7 @@ This action comes with 3 useful inputs that can be used for customizing the buil
 
 1. **version** (default: `latest`): The Grav version to utilize for building the Skeleton package. There is no reason for using anything but `latest` unless you are testing something.
 2. **admin** (default: `true`): Whether a second package should be created that includes Admin. Note that when this is set to true this will generate 2 packages, one with admin and one without. 
-3. **exclude** (default: `<empty>`): A space separated list of file/folder names to be excluded from getting packaged (ie, `README.md *private/*`). [[check out also the built-in exclusions.](https://github.com/getgrav/skeleton-builder/blob/main/entrypoint.sh)]
+3. **exclude** (default: `<empty>`): A space separated list of file/folder names to be excluded from getting packaged (ie, `README.md C* *private/*`). [[check out also the built-in exclusions.](https://github.com/getgrav/skeleton-builder/blob/main/entrypoint.sh)]
 4. **filename_version** (default: `true`): By default the packages get created with the version of the release appended to the filename. If this is not desired, disabling this will omit the version.
 5. **verbose** (default: `false`): Will output everything happening in the action, useful for debugging.
 
