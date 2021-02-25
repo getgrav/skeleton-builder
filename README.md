@@ -6,6 +6,8 @@ This action role is only capable of creating a skeleton package, in order to aut
 ## Setup workflow
 After having made sure your repository Skeleton follows [Grav's guidance](https://learn.getgrav.org/advanced/grav-development#grav-skeletons), head over to your repository on GitHub.
 
+> Note that your Skeleton must have a proper `.dependencies` file in order for the builder to work. Take a look at the official [Grav Blog Site Skeleton](https://github.com/getgrav/grav-skeleton-blog-site/blob/develop/.dependencies) for a reference.
+
 1. Create a new workflow file under `.github/workflows/build-skeleton.yaml`, GitHub simplifies this process, you can copy the path above and then click on **Add file** -> **Create new file**
 
     ![docs-1](./docs/docs-1.png)
