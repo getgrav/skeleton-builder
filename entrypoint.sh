@@ -35,7 +35,7 @@ USER_EXCLUDE=$INPUT_EXCLUDE
 FILENAME_VERSION="-${VERSION}"
 
 if [ ! -z "$INPUT_EXCLUDE" ]; then
-    USER_EXCLUDE=$(echo "-x ${USER_EXCLUDE// / -x }")
+    USER_EXCLUDE=$(echo "-x '${INPUT_EXCLUDE}'")
 fi
 
 if ! $INPUT_FILENAME_VERSION; then
