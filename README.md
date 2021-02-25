@@ -69,9 +69,9 @@ To use the automatic mode, you don't have to do anything other than follow the s
 
 The **Manual** mode, instead, can be reached in GitHub under **Actions** -> **Build Skeleton** -> **Run workflow**, where you will have to specify the release tag version you are targeting to rebuilt.
 
-Assuming your latest Skeleton release is `v1.0.0` but a new version of Grav was released and you want to update your packages, you would run the Manual workflow and type `v1.0.0`  as target tag. All the existing packages from that version will get now overwritten and will contain the latest version of Grav and the Skeleton dependencies.
-
 ![docs-2.png](./docs/docs-2.png)
+
+Assuming your latest Skeleton release is `v1.0.0` but a new version of Grav was released and you want to update your packages, you would run the Manual workflow and type `v1.0.0`  as target tag. All the existing packages from that version will get now overwritten and will contain the latest version of Grav and the Skeleton dependencies.
 
 ## Inputs
 This action comes with 3 useful inputs that can be used for customizing the build
