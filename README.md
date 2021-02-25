@@ -4,9 +4,9 @@ GitHub Action to create fully functional [Grav skeleton packages](https://learn.
 This action role is only capable of creating a skeleton package, in order to automate uploading the resulting packages into your GitHub releases for GPM, you will need a full workflow as explained below.
 
 ## Setup workflow
-After having made sure your repository Skeleton follows [Grav's guidances](https://learn.getgrav.org/advanced/grav-development#grav-skeletons), head over to your repository on GitHub.
+After having made sure your repository Skeleton follows [Grav's guidance](https://learn.getgrav.org/advanced/grav-development#grav-skeletons), head over to your repository on GitHub.
 
-1. Create a new worfklow file under `.github/workflows/build-skeleton.yaml`, GitHub simplifies this process, you can copy the path above and then click on **Add file** -> **Create new file**
+1. Create a new workflow file under `.github/workflows/build-skeleton.yaml`, GitHub simplifies this process, you can copy the path above and then click on **Add file** -> **Create new file**
 
     ![docs-1](./docs/docs-1.png)
 
@@ -58,7 +58,7 @@ After having made sure your repository Skeleton follows [Grav's guidances](https
 3. You are now ready to build your skeleton.
 
 ## How to use
-The workflow in combination with this action allows to create Skeleton packages in two ways:
+The workflow in combination with this action supports the creation of Skeleton packages in two ways:
 
 1. **Automatically**: every time a new release of your skeleton is published on GitHub, the workflow will run, generate the packages and upload them on your just published release.
 2. **Manually**: if you don't have anything to release but you want to rebuild the packages to use the latest version of Grav or any of your Skeleton dependencies, you can use this way.
