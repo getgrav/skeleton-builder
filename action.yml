@@ -13,6 +13,14 @@ inputs:
     description: 'Create also a package copy with the Admin Plugin installed'
     required: false
     default: true
+  exclude:
+    description: 'Space separated file names to exclude (ie, README.md *private/*)'
+    required: false
+    default: ''
+  filename_version:
+    description: 'Wether to append the release version in the filename'
+    required: false
+    default: true
   verbose:
     description: 'Outputs everything to help identifying potential issues.'
     required: false
@@ -20,6 +28,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.version }}
-    - ${{ inputs.admin }}
