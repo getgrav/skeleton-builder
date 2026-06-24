@@ -1,23 +1,32 @@
-FROM php:7.4-alpine
-LABEL maintainer="Djamil Legato <djamil@trilby.media> (@w00fz)"
+FROM php:8.3-alpine
+LABEL maintainer="Team Grav <devs@getgrav.org>"
 
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-RUN rm -rf composer-setup.php
+# Composer (copied from the official image rather than the web installer)
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
+# Runtime libraries plus the build deps needed to compile gd and zip.
+# The build deps are dropped again at the end to keep the image small.
+RUN apk add --no-cache \
+        git \
+        zip \
+        unzip \
+        curl \
+        libpng \
+        libjpeg-turbo \
+        libwebp \
+        freetype \
+        libzip \
+    && apk add --no-cache --virtual .build-deps \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        libwebp-dev \
+        freetype-dev \
+        libzip-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install -j"$(nproc)" gd zip \
+    && apk del .build-deps
 
 COPY entrypoint.sh /entrypoint.sh
-
-RUN apk add --quiet --no-cache \
-    zip \
-    git \
-    libpng \
-    libpng-dev \
-    libzip-dev \
-    php-gd \
-    php-zip
-
-RUN set -x
-RUN docker-php-ext-install gd zip > /dev/null
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

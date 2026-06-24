@@ -3,6 +3,8 @@ GitHub Action to create fully functional [Grav skeleton packages](https://learn.
 
 This action role is only capable of creating a skeleton package, in order to automate uploading the resulting packages into your GitHub releases for GPM, you will need a full workflow as explained below.
 
+> The builder image ships PHP 8.3, so it can package Grav 2.0 (which requires PHP 8.3+) as well as older Grav releases. Skeletons that already bundle the Admin Next stack (admin2, api, flex-objects) in their `.dependencies` should set the `admin` input to `false`, since the legacy `admin` plugin is only relevant to Grav 1.x skeletons.
+
 ## Setup workflow
 After having made sure your repository Skeleton follows [Grav's guidance](https://learn.getgrav.org/advanced/grav-development#grav-skeletons), head over to your repository on GitHub.
 
@@ -39,9 +41,9 @@ After having made sure your repository Skeleton follows [Grav's guidance](https:
       build:
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v2
+          - uses: actions/checkout@v4
           - name: Extract Tag
-            run: echo "SKELETON_VERSION=${{ github.event.inputs.tag || github.ref }}" >> $GITHUB_ENV
+            run: echo "SKELETON_VERSION=${{ github.event.inputs.tag || github.ref_name }}" >> $GITHUB_ENV
           - name: Generate Skeleton Packages
             uses: getgrav/skeleton-builder@v1
             with:
