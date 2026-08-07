@@ -1,3 +1,9 @@
+# v1.1.1
+## 08/07/2026
+
+1. [](#bugfix)
+    * Excluded `cache/compiled/` from the generated packages, since running `bin/grav install` and `bin/gpm install admin` during the build left compiled blueprint/config caches inside the zips
+
 # v1.1.0
 ## 06/24/2026
 
