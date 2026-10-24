@@ -1,3 +1,13 @@
+# v1.1.2
+## 10/24/2026
+
+1. [](#bugfix)
+    * Kept Grav's own `user/.htaccess` in the packages (unless the skeleton ships one), since replacing the `user/` folder dropped the extra protection Grav 2 adds there
+    * Created any of the `user/` folders Grav needs (accounts, config, data, pages, plugins, themes) that a skeleton leaves out, since a missing `user/accounts` stops a fresh install with a Grav Problems page
+    * Left every `.github/` folder out of the packages, not only `.github/workflows/`
+1. [](#improved)
+    * Updated the example workflow and noted that `.dependencies` entries should use stable branches
+
 # v1.1.1
 ## 08/07/2026
 

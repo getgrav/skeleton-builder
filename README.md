@@ -8,7 +8,7 @@ This action role is only capable of creating a skeleton package, in order to aut
 ## Setup workflow
 After having made sure your repository Skeleton follows [Grav's guidance](https://learn.getgrav.org/advanced/grav-development#grav-skeletons), head over to your repository on GitHub.
 
-> Note that your Skeleton must have a proper `.dependencies` file in order for the builder to work. Take a look at the official [Grav Blog Site Skeleton](https://github.com/getgrav/grav-skeleton-blog-site/blob/develop/.dependencies) for a reference.
+> Note that your Skeleton must have a proper `.dependencies` file in order for the builder to work. Take a look at the official [Grav Blog Site Skeleton](https://github.com/getgrav/grav-skeleton-blog-site/blob/develop/.dependencies) for a reference. Point each entry at the package's stable branch (`master`, or `main` for packages released from it), not `develop`: the builder clones whatever branch is listed, so a `develop` entry puts unreleased code in the zip.
 
 1. Create a new workflow file under `.github/workflows/build-skeleton.yaml`, GitHub simplifies this process, you can copy and paste the path above after clicking on **Add file** -> **Create new file**
 
@@ -25,7 +25,7 @@ After having made sure your repository Skeleton follows [Grav's guidance](https:
       workflow_dispatch:
         inputs:
           tag:
-            description: 'Target tag for re-upload'     
+            description: 'Target tag for re-upload'
             required: true
             default: ''
           version:
@@ -33,9 +33,9 @@ After having made sure your repository Skeleton follows [Grav's guidance](https:
             required: true
             default: 'latest'
           admin:
-            description: 'Create also a package with Admin'
+            description: 'Also build a legacy +admin package (Grav 1.x only; admin2 is already bundled)'
             required: true
-            default: true
+            default: false
 
     jobs:
       build:
@@ -48,7 +48,7 @@ After having made sure your repository Skeleton follows [Grav's guidance](https:
             uses: getgrav/skeleton-builder@v1
             with:
               version: ${{ github.event.inputs.version || 'latest' }}
-              admin: ${{ github.event.inputs.admin || true }}
+              admin: ${{ github.event.inputs.admin || false }}
           - name: Upload packages to release
             uses: svenstaro/upload-release-action@v2
             with:

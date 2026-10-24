@@ -26,9 +26,18 @@ rm -rf grav.zip
 
 cd grav
 
-# Install the skeleton user folder
+# Install the skeleton user folder, keeping core's user/.htaccess (the
+# defense-in-depth deny rules) unless the skeleton ships its own
+if [ -f user/.htaccess ]; then
+    cp user/.htaccess /build/user.htaccess
+fi
 rm -rf user
 cp -Rf $GITHUB_WORKSPACE user
+if [ ! -f user/.htaccess ] && [ -f /build/user.htaccess ]; then
+    cp /build/user.htaccess user/.htaccess
+fi
+# Grav refuses to run without these, and a skeleton repo can leave one out
+mkdir -p user/accounts user/config user/data user/pages user/plugins user/themes
 bin/grav install ${SILENT}
 
 USER_EXCLUDE=$INPUT_EXCLUDE
@@ -43,12 +52,12 @@ if ! $INPUT_FILENAME_VERSION; then
 fi
 
 # Create a package of the skeleton (w/o admin)
-zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x "cache/compiled/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* $USER_EXCLUDE -r "/dist/${REPOSITORY_NAME}${FILENAME_VERSION}.zip" .
+zip ${SILENT} -x "*.git/*" -x "*.github/*" -x "cache/compiled/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* $USER_EXCLUDE -r "/dist/${REPOSITORY_NAME}${FILENAME_VERSION}.zip" .
 
 # If option enabled, also create a package with admin included
 if $INPUT_ADMIN; then
     bin/gpm install admin -y ${SILENT}
-    zip ${SILENT} -x "*.git/*" -x "*.github/workflows/*" -x "cache/compiled/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* $USER_EXCLUDE -r "/dist/${REPOSITORY_NAME}+admin${FILENAME_VERSION}.zip" .
+    zip ${SILENT} -x "*.git/*" -x "*.github/*" -x "cache/compiled/*" -x *yarn.lock* -x *.gitignore* -x *.editorconfig* -x *.DS_Store* -x *hebe.json* -x *.dependencies* -x *.travis.yml* $USER_EXCLUDE -r "/dist/${REPOSITORY_NAME}+admin${FILENAME_VERSION}.zip" .
 fi
 
 # Finally make the dist packages available in the workspace
